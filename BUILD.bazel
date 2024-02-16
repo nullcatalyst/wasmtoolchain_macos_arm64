@@ -1,0 +1,73 @@
+load(
+    ":toolchain.bzl",
+    "wasm_toolchain_config",
+)
+
+platform(
+    name = "wasm",
+    constraint_values = [
+        "@platforms//os:none",
+        "@platforms//cpu:wasm32",
+    ],
+)
+
+toolchain(
+    name = "toolchain",
+    exec_compatible_with = [
+        "@platforms//cpu:arm64",
+        "@platforms//os:macos",
+    ],
+    target_compatible_with = [
+        "@platforms//os:none",
+        "@platforms//cpu:wasm32",
+    ],
+    toolchain = ":wasm_cc_toolchain",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+wasm_toolchain_config(name = "wasm_toolchain_config")
+
+cc_toolchain(
+    name = "wasm_cc_toolchain",
+    all_files = ":all_files",
+    ar_files = ":empty",
+    compiler_files = ":compiler_files",
+    dwp_files = ":empty",
+    linker_files = ":linker_files",
+    objcopy_files = ":empty",
+    strip_files = ":empty",
+    supports_param_files = 0,
+    toolchain_config = ":wasm_toolchain_config",
+    toolchain_identifier = "wasm-toolchain",
+    visibility = [
+        "//visibility:private",
+    ],
+)
+
+filegroup(name = "empty")
+
+# The compiler needs to be able to access all of the headers.
+filegroup(
+    name = "compiler_files",
+    srcs = glob([
+        # "include/**/*",
+        "tools/**/*",
+    ]),
+)
+
+# The linker needs to be able to access the standard library.
+filegroup(
+    name = "linker_files",
+    srcs = glob([
+        # "lib/**/*",
+        "tools/**/*",
+    ]),
+)
+
+filegroup(
+    name = "all_files",
+    srcs = [
+        ":compiler_files",
+        ":linker_files",
+    ],
+)

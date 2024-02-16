@@ -14,3 +14,6 @@ cp bazel-bin/external/llvm-project~override/clang/clang tools/clang
 cp bazel-bin/external/llvm-project~override/lld/lld tools/lld
 cp bazel-bin/external/llvm-project~override/llvm/llvm-ar tools/llvm-ar
 
+cd tools
+ln -s clang clang++
+ln -s lld wasm-ld
