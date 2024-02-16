@@ -1,0 +1,48 @@
+# Automatically use a flag like --config=windows, --config=linux, etc.
+common --enable_platform_specific_config
+
+# Enable runfiles support for all targets. This is off by default on Windows.
+build --enable_runfiles=yes
+run --enable_runfiles=yes
+
+# Print the output of tests. This can make it easier to debug test failures.
+test --test_output=all
+
+# Prevent invalid caching if input files are modified during a build.
+build --experimental_guard_against_concurrent_changes
+
+# In opt mode, bazel by default builds both PIC and non-PIC object files for tests vs binaries. We
+# don't need this feature and it slows down opt builds considerably.
+build --force_pic
+
+# Shared objects take up more space. With fast linkers and binaries that aren't super large, the
+# benefits of shared objects are minimal.
+build --dynamic_mode=off
+
+# C++20 standard version is required.
+build:posix --cxxopt=-std=c++20 --host_cxxopt=-std=c++20
+build:windows --cxxopt=/std:c++20 --host_cxxopt=/std:c++20
+
+# Treat all warnings as errors.
+build:posix --copt=-Wall --host_copt=-Wall
+build:windows --copt=/WX --host_copt=/WX
+
+# The Clang available on MacOS has a warning that isn't clean on MLIR code. The warning doesn't show
+# up with more recent Clangs, so just disable for now.
+build:macos --cxxopt=-Wno-range-loop-analysis --host_cxxopt=-Wno-range-loop-analysis
+
+# Other generic dialect flags on Windows.
+build:windows --copt=/Zc:strictStrings --host_copt=/Zc:strictStrings
+build:windows --copt=/Oi --host_copt=/Oi
+build:windows --cxxopt=/Zc:rvalueCast --host_cxxopt=/Zc:rvalueCast
+
+# Use the more flexible bigobj format for C++ files that have lots of symbols.
+build:windows --cxxopt=/bigobj --host_cxxopt=/bigobj
+
+# Reuse the posix config, since most platforms (not Windows) reuse all the same flags.
+build:macos --config=posix
+build:linux --config=posix
+
+# Hide LLVM warnings that we can't really do much about
+build:posix --cxxopt=-Wno-deprecated-anon-enum-enum-conversion
+build:posix --cxxopt=-Wno-deprecated-enum-compare-conditional
