@@ -15,6 +15,19 @@ load(
 def _tool_path(path):
     return "tools/{}".format(path)
 
+def _sysroot_path(ctx, path):
+    prefix = ""
+    if ctx.label.workspace_name == "":
+        # Support for using the toolchain for compiling its own libraries
+        prefix = "sysroot"
+    else:
+        prefix = "external/{}/sysroot".format(ctx.label.workspace_name)
+
+    if path:
+        return "{}/{}".format(prefix, path)
+    else:
+        return prefix
+
 def _wasm_toolchain_config_impl(ctx):
     include_stdlib = True
 
@@ -36,7 +49,7 @@ def _wasm_toolchain_config_impl(ctx):
     cxx_builtin_include_directories = []
     if include_stdlib:
         cxx_builtin_include_directories = [
-            "external/{}/sysroot/include".format(ctx.label.workspace_name),
+            _sysroot_path(ctx, "include"),
         ]
 
     artifact_name_patterns = [
@@ -72,7 +85,7 @@ def _wasm_toolchain_config_impl(ctx):
     link_flags = []
     if include_stdlib:
         link_flags = [
-            # "-Lexternal/%{workspace_name}/lib",
+            _sysroot_path(ctx, "lib"),
             # "-lc",
             # "-lcxx",
             # "-ldlmalloc",
@@ -85,12 +98,13 @@ def _wasm_toolchain_config_impl(ctx):
                 actions = all_link_actions,
                 flag_groups = ([
                     flag_group(
-                        flags = [
+                        flags = link_flags + [
                             "--target=wasm32-unknown-unknown",
                             "-Wl,--no-entry",
                             "-Wl,--export-table",
                             "--no-standard-libraries",
-                        ] + link_flags,
+                            "-Wl,--allow-undefined",
+                        ],
                     ),
                 ]),
             ),
@@ -102,11 +116,13 @@ def _wasm_toolchain_config_impl(ctx):
     if include_stdlib:
         c_sys_hdrs = [
             "-isystem",
-            "external/{}/sysroot/include".format(ctx.label.workspace_name),
+            _sysroot_path(ctx, "include/compat"),
+            "-isystem",
+            _sysroot_path(ctx, "include"),
         ]
         cpp_sys_hdrs = [
             "-isystem",
-            "external/{}/sysroot/include/c++/v1".format(ctx.label.workspace_name),
+            _sysroot_path(ctx, "include/c++/v1"),
         ]
     default_compile_flags = feature(
         name = "default_compile_flags",

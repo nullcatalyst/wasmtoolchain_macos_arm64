@@ -1,0 +1,9 @@
+cc_library(
+    name = "m",
+    srcs = [
+        "math.c",
+    ],
+    deps = [
+        "//src:wasm",
+    ],
+)

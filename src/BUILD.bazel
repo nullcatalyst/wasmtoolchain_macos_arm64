@@ -1,0 +1,9 @@
+cc_library(
+    name = "wasm",
+    hdrs = [
+        "wasm.h",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)

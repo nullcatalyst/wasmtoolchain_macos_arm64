@@ -1,0 +1,19 @@
+cc_library(
+    name = "c",
+    srcs = [
+        "abort.c",
+        "assert.c",
+        "exit.c",
+        "memcmp.c",
+        "memcpy.c",
+        "memmove.c",
+        "memset.c",
+        "multi3.c",
+        "strcmp.c",
+        "strcpy.c",
+        "strlen.c",
+    ],
+    deps = [
+        "//src:wasm",
+    ],
+)

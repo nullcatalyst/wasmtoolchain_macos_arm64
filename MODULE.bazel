@@ -41,3 +41,7 @@ archive_override(
     ],
     patch_strip = 1,
 )
+
+register_toolchains(
+    "//:toolchain",
+)
