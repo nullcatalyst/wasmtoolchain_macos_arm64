@@ -30,7 +30,7 @@ wasm_toolchain_config(name = "wasm_toolchain_config")
 cc_toolchain(
     name = "wasm_cc_toolchain",
     all_files = ":all_files",
-    ar_files = ":empty",
+    ar_files = ":linker_files",
     compiler_files = ":compiler_files",
     dwp_files = ":empty",
     linker_files = ":linker_files",
@@ -50,7 +50,7 @@ filegroup(name = "empty")
 filegroup(
     name = "compiler_files",
     srcs = glob([
-        # "include/**/*",
+        "sysroot/include/**/*",
         "tools/**/*",
     ]),
 )

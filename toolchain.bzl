@@ -15,8 +15,8 @@ load(
 def _tool_path(path):
     return "tools/{}".format(path)
 
-def _wasm_toolchain_impl(ctx):
-    include_stdlib = False
+def _wasm_toolchain_config_impl(ctx):
+    include_stdlib = True
 
     cc_tool_path = _tool_path("clang")
     cpp_tool_path = _tool_path("clang++")
@@ -36,8 +36,7 @@ def _wasm_toolchain_impl(ctx):
     cxx_builtin_include_directories = []
     if include_stdlib:
         cxx_builtin_include_directories = [
-            "%package(@%{workspace_name}//)%/include/libc",
-            "%package(@%{workspace_name}//)%/include/libcxx",
+            "external/{}/sysroot/include".format(ctx.label.workspace_name),
         ]
 
     artifact_name_patterns = [
@@ -102,12 +101,12 @@ def _wasm_toolchain_impl(ctx):
     cpp_sys_hdrs = []
     if include_stdlib:
         c_sys_hdrs = [
-            # "-isystem",
-            # "external/%{workspace_name}/include/libc",
+            "-isystem",
+            "external/{}/sysroot/include".format(ctx.label.workspace_name),
         ]
         cpp_sys_hdrs = [
-            # "-isystem",
-            # "external/%{workspace_name}/include/libcxx",
+            "-isystem",
+            "external/{}/sysroot/include/c++/v1".format(ctx.label.workspace_name),
         ]
     default_compile_flags = feature(
         name = "default_compile_flags",
@@ -121,12 +120,9 @@ def _wasm_toolchain_impl(ctx):
                             "--target=wasm32-unknown-unknown",
                             "-D__wasm__=1",
                             "-D__wasm32__=1",
-                            # "-D__wasi__=1",
-                            # "-D__EMSCRIPTEN__=1",
-                            #"-D_WASI_EMULATED_SIGNAL=1",
-                            # "-D_REENTRANT=1",
-                            # "-Wall",
-                            # "-Werror",
+                            # Fake being exmpscripten, as there is better support for emscripten
+                            # in existing libraries, compared to being completely platformless.
+                            "-D__EMSCRIPTEN__=1",
                         ],
                     ),
                 ],
@@ -294,7 +290,7 @@ def _wasm_toolchain_impl(ctx):
     )
 
 wasm_toolchain_config = rule(
-    implementation = _wasm_toolchain_impl,
+    implementation = _wasm_toolchain_config_impl,
     attrs = {},
     provides = [CcToolchainConfigInfo],
 )
