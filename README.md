@@ -12,13 +12,13 @@ toolchain.
 ```
 bazel_dep(name = "wasm_toolchain", version = "0.0.1")
 
-_WASM_TOOLCHAIN_COMMIT = "a566bdb3c9d1cddf489364b5ee24c1be8d62c4ba"
+_WASM_TOOLCHAIN_COMMIT = "fb5eedccde3073c337bade259f22ea5d354736a0"
 archive_override(
     module_name = "wasm_toolchain",
     urls = [
         "https://github.com/nullcatalyst/wasmtoolchain_macos_arm64/archive/{}.tar.gz".format(_WASM_TOOLCHAIN_COMMIT)
     ],
-    integrity = "sha256-tqTvy2Z8/RuLgQNvTsleTlv7PFDHbIB9K42jMPhf/ek=",
+    integrity = "sha256-dToS5Ez7BMsYMEi8oYbt2iLcRVR+YsWPFKgK7Emq2kM=",
     strip_prefix = "wasmtoolchain_macos_arm64-{}".format(_WASM_TOOLCHAIN_COMMIT),
 )
 
