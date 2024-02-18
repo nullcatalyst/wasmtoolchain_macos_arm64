@@ -3,6 +3,9 @@ cc_library(
     srcs = [
         "math.c",
     ],
+    visibility = [
+        "//visibility:public",
+    ],
     deps = [
         "//src:wasm",
     ],

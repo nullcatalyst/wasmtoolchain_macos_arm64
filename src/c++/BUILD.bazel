@@ -1,0 +1,16 @@
+cc_library(
+    name = "c++",
+    srcs = [
+        "abi.cpp",
+        "hash.cpp",
+        "new.cpp",
+        "string.cpp",
+    ],
+    defines = [
+        "_LIBCPP_NO_EXCEPTIONS",
+        "_LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)

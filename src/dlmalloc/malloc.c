@@ -732,9 +732,9 @@ MAX_RELEASE_CHECK_RATE   default: 4095 unless not HAVE_MMAP
   malloc does support the following options.
 */
 
-#define M_TRIM_THRESHOLD     (-1)
-#define M_GRANULARITY        (-2)
-#define M_MMAP_THRESHOLD     (-3)
+// #define M_TRIM_THRESHOLD     (-1)
+// #define M_GRANULARITY        (-2)
+// #define M_MMAP_THRESHOLD     (-3)
 
 /* ------------------------ Mallinfo declarations ------------------------ */
 

@@ -30,22 +30,67 @@ WASM_IMPORT("math", "asinh") double _asinh_impl(double);
 WASM_IMPORT("math", "acosh") double _acosh_impl(double);
 WASM_IMPORT("math", "atanh") double _atanh_impl(double);
 
-// Double precision
-double round(double x) { return _round_impl(x); }
-double floor(double x) { return _floor_impl(x); }
-double ceil(double x) { return _ceil_impl(x); }
+// Double precision intrinsics
+
+double round(double x) {
+#if __has_builtin(__builtin_round)
+    return __builtin_round(x);
+#else
+    return _round_impl(x);
+#endif
+}
+
+double floor(double x) {
+#if __has_builtin(__builtin_floor)
+    return __builtin_floor(x);
+#else
+    return _floor_impl(x);
+#endif
+}
+
+double ceil(double x) {
+#if __has_builtin(__builtin_ceil)
+    return __builtin_ceil(x);
+#else
+    return _ceil_impl(x);
+#endif
+}
+
+double sqrt(double x) {
+#if __has_builtin(__builtin_sqrt)
+    return __builtin_sqrt(x);
+#else
+    return _sqrt_impl(x);
+#endif
+}
+
+double fabs(double x) {
+#if __has_builtin(__builtin_fabs)
+    return __builtin_fabs(x);
+#else
+    return x < 0 ? -x : x;
+#endif
+}
+
+double fmod(double x, double y) {
+#if __has_builtin(__builtin_fmod)
+    return __builtin_fmod(x, y);
+#else
+    return x - y * (int)(x / y);
+#endif
+}
+
+// Double precision functions imported from javascript
 
 double log(double x) { return _log_impl(x); }
 double log2(double x) { return _log2_impl(x); }
 double log10(double x) { return _log_impl(x); }
 double exp(double x) { return _exp_impl(x); }
 double pow(double x, double y) { return _pow_impl(x, y); }
-double sqrt(double x) { return _sqrt_impl(x); }
 
 double sin(double x) { return _sin_impl(x); }
 double cos(double x) { return _cos_impl(x); }
 double tan(double x) { return _tan_impl(x); }
-
 double asin(double x) { return _asin_impl(x); }
 double acos(double x) { return _acos_impl(x); }
 double atan(double x) { return _atan_impl(x); }
@@ -54,27 +99,71 @@ double atan2(double y, double x) { return _atan2_impl(y, x); }
 double sinh(double x) { return _sinh_impl(x); }
 double cosh(double x) { return _cosh_impl(x); }
 double tanh(double x) { return _tanh_impl(x); }
-
 double asinh(double x) { return _asinh_impl(x); }
 double acosh(double x) { return _acosh_impl(x); }
 double atanh(double x) { return _atanh_impl(x); }
 
-// Single precision
-float roundf(float x) { return _round_impl(x); }
-float floorf(float x) { return _floor_impl(x); }
-float ceilf(float x) { return _ceil_impl(x); }
+// Single precision intrinsics
+
+float roundf(float x) {
+#if __has_builtin(__builtin_roundf)
+    return __builtin_roundf(x);
+#else
+    return _round_impl(x);
+#endif
+}
+
+float floorf(float x) {
+#if __has_builtin(__builtin_floorf)
+    return __builtin_floorf(x);
+#else
+    return _floor_impl(x);
+#endif
+}
+
+float ceilf(float x) {
+#if __has_builtin(__builtin_ceilf)
+    return __builtin_ceilf(x);
+#else
+    return _ceil_impl(x);
+#endif
+}
+
+float sqrtf(float x) {
+#if __has_builtin(__builtin_sqrtf)
+    return __builtin_sqrtf(x);
+#else
+    return _sqrt_impl(x);
+#endif
+}
+
+float fabsf(float x) {
+#if __has_builtin(__builtin_fabsf)
+    return __builtin_fabsf(x);
+#else
+    return x < 0 ? -x : x;
+#endif
+}
+
+float fmodf(float x, float y) {
+#if __has_builtin(__builtin_fmodf)
+    return __builtin_fmodf(x, y);
+#else
+    return x - y * (int)(x / y);
+#endif
+}
+
+// Single precision functions imported from javascript
 
 float logf(float x) { return _log_impl(x); }
 float log2f(float x) { return _log2_impl(x); }
 float log10f(float x) { return _log10_impl(x); }
 float expf(float x) { return _exp_impl(x); }
 float powf(float x, float y) { return _pow_impl(x, y); }
-float sqrtf(float x) { return _sqrt_impl(x); }
 
 float sinf(float x) { return _sin_impl(x); }
 float cosf(float x) { return _cos_impl(x); }
 float tanf(float x) { return _tan_impl(x); }
-
 float asinf(float x) { return _asin_impl(x); }
 float acosf(float x) { return _acos_impl(x); }
 float atanf(float x) { return _atan_impl(x); }
@@ -83,7 +172,6 @@ float atan2f(float y, float x) { return _atan2_impl(y, x); }
 float sinhf(float x) { return _sinh_impl(x); }
 float coshf(float x) { return _cosh_impl(x); }
 float tanhf(float x) { return _tanh_impl(x); }
-
 float asinhf(float x) { return _asinh_impl(x); }
 float acoshf(float x) { return _acosh_impl(x); }
 float atanhf(float x) { return _atanh_impl(x); }

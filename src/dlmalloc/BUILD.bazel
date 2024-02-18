@@ -1,5 +1,5 @@
 cc_library(
-    name = "dl",
+    name = "dlmalloc",
     srcs = [
         "dlmalloc.c",
         "sbrk.c",
@@ -10,6 +10,9 @@ cc_library(
     ],
     textual_hdrs = [
         "malloc.c",
+    ],
+    visibility = [
+        "//visibility:public",
     ],
     deps = [
         "//src:wasm",

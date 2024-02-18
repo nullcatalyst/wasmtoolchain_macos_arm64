@@ -1,0 +1,16 @@
+cc_library(
+    name = "rt",
+    srcs = [
+        "spawn.c",
+        "wait.c",
+    ],
+    copts = [
+        "-Wno-c2x-extensions",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "//src:wasm",
+    ],
+)

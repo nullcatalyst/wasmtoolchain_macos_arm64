@@ -1,17 +1,41 @@
+# Source files containing imported symbols from javascript.
+_IMPORT_SRCS = [
+    "abort.c",
+    "exit.c",
+]
+
+# Source files containing C standard library implementations.
+_IMPL_SRCS = [
+    "assert.c",
+    "ctype.c",
+    "memchr.c",
+    "memcmp.c",
+    "memcpy.c",
+    "memmove.c",
+    "memset.c",
+    "multi3.c",
+    "strcmp.c",
+    "strcpy.c",
+    "strlen.c",
+    "wmemchr.c",
+]
+
+# Source files containing stubs of C standard library functions -- the bare minimum to satisfy the
+# linker, and nothing more.
+_STUB_SRCS = [
+    "posix.c",
+    "signal.c",
+    "stdio.c",
+]
+
 cc_library(
     name = "c",
-    srcs = [
-        "abort.c",
-        "assert.c",
-        "exit.c",
-        "memcmp.c",
-        "memcpy.c",
-        "memmove.c",
-        "memset.c",
-        "multi3.c",
-        "strcmp.c",
-        "strcpy.c",
-        "strlen.c",
+    srcs = _IMPORT_SRCS + _IMPL_SRCS + _STUB_SRCS,
+    copts = [
+        "-Wno-c2x-extensions",
+    ],
+    visibility = [
+        "//visibility:public",
     ],
     deps = [
         "//src:wasm",

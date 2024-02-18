@@ -7,3 +7,15 @@ cc_library(
         "//visibility:public",
     ],
 )
+
+filegroup(
+    name = "libs",
+    srcs = [
+        "//src/c",
+        "//src/c++",
+        "//src/dl",
+        "//src/dlmalloc",
+        "//src/m",
+        "//src/rt",
+    ],
+)

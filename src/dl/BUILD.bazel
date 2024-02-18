@@ -1,0 +1,12 @@
+cc_library(
+    name = "dl",
+    srcs = [
+        "dl.c",
+    ],
+    copts = [
+        "-Wno-c2x-extensions",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
