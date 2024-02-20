@@ -29,8 +29,9 @@
 #define LACKS_TIME_H 1
 
 // Disable malloc statistics generation to reduce code size.
-#define NO_MALLINFO 1
-#define NO_MALLOC_STATS 1
+// #define NO_MALLINFO 1
+// #define NO_MALLOC_STATS 1
+#define STRUCT_MALLINFO_DECLARED 1
 
 // Align malloc regions to 16, to avoid unaligned SIMD accesses.
 #define MALLOC_ALIGNMENT 16
@@ -78,8 +79,12 @@ void* calloc(size_t nmemb, size_t size) { return dlcalloc(nmemb, size); }
 
 void* realloc(void* ptr, size_t size) { return dlrealloc(ptr, size); }
 
-int posix_memalign(void** memptr, size_t alignment, size_t size) { return dlposix_memalign(memptr, alignment, size); }
+int posix_memalign(void** memptr, size_t alignment, size_t size) {
+    return dlposix_memalign(memptr, alignment, size);
+}
 
 void* aligned_alloc(size_t alignment, size_t bytes) { return dlmemalign(alignment, bytes); }
 
 size_t malloc_usable_size(void* ptr) { return dlmalloc_usable_size(ptr); }
+
+struct mallinfo mallinfo(void) { return dlmallinfo(); }

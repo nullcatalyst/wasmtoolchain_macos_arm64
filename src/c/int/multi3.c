@@ -1,36 +1,6 @@
-#define CHAR_BIT 8
+#include "int_lib.h"
 
-typedef long long          di_int;
-typedef unsigned long long du_int;
-
-typedef int      ti_int __attribute__((mode(TI)));
-typedef unsigned tu_int __attribute__((mode(TI)));
-
-typedef union {
-    ti_int all;
-    struct {
-#if _YUGA_LITTLE_ENDIAN
-        du_int low;
-        di_int high;
-#else
-        di_int high;
-        du_int low;
-#endif  // _YUGA_LITTLE_ENDIAN
-    } s;
-} twords;
-
-typedef union {
-    tu_int all;
-    struct {
-#if _YUGA_LITTLE_ENDIAN
-        du_int low;
-        du_int high;
-#else
-        du_int high;
-        du_int low;
-#endif  // _YUGA_LITTLE_ENDIAN
-    } s;
-} utwords;
+// Returns: a * b
 
 static ti_int __mulddi3(du_int a, du_int b) {
     twords       r;
@@ -52,6 +22,7 @@ static ti_int __mulddi3(du_int a, du_int b) {
 }
 
 // Returns: a * b
+
 ti_int __multi3(ti_int a, ti_int b) {
     twords x;
     x.all = a;

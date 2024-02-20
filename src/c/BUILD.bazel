@@ -1,31 +1,60 @@
 # Source files containing imported symbols from javascript.
 _IMPORT_SRCS = [
     "abort.c",
+    "errno.c",
     "exit.c",
+    "time.c",
 ]
 
 # Source files containing C standard library implementations.
 _IMPL_SRCS = [
     "assert.c",
-    "ctype.c",
-    "memchr.c",
-    "memcmp.c",
-    "memcpy.c",
-    "memmove.c",
-    "memset.c",
-    "multi3.c",
-    "strcmp.c",
-    "strcpy.c",
-    "strlen.c",
-    "wmemchr.c",
+    "int/ashlti3.c",
+    "int/int_endianness.h",
+    "int/int_lib.h",
+    "int/lshrti3.c",
+    "int/multi3.c",
+    "mem/memchr.c",
+    "mem/memcmp.c",
+    "mem/memcpy.c",
+    "mem/memmove.c",
+    "mem/memset.c",
+    "mem/wmemchr.c",
+    "qsort.cpp",
+    "string/atoi.cpp",
+    "string/fpbits.hpp",
+    "string/atol.cpp",
+    "string/atoll.cpp",
+    "string/mathutils.hpp",
+    "string/ctype.c",
+    "string/highprecisiondecimal.hpp",
+    "string/strchr.c",
+    "string/strcmp.c",
+    "string/strcpy.c",
+    "string/strlen.c",
+    "string/strncmp.c",
+    "string/strncpy.c",
+    "string/strtod.cpp",
+    "string/strtof.cpp",
+    "string/strtofloat.hpp",
+    "string/strtointeger.hpp",
+    "string/strtol.cpp",
+    "string/strtoll.cpp",
+    "string/strtonumresult.hpp",
+    "string/strtoul.cpp",
+    "string/strtoull.cpp",
 ]
 
 # Source files containing stubs of C standard library functions -- the bare minimum to satisfy the
 # linker, and nothing more.
 _STUB_SRCS = [
-    "posix.c",
-    "signal.c",
-    "stdio.c",
+    "stub/filesystem.c",
+    "stub/memory.c",
+    "stub/posix.c",
+    "stub/process.c",
+    "stub/resource.c",
+    "stub/signal.c",
+    "stub/stdio.c",
 ]
 
 cc_library(

@@ -1,9 +1,31 @@
+#include <dirent.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
 // None of these attempt to be actual implementations, they just return 0 or NULL.
 // This is essentially here entirely to make linker issues go away.
 // Please test to verify that that works well enough for your own use case.
+
+// #include <dirent.h>
+int            closedir(DIR*) { return 0; }
+DIR*           opendir(const char*) { return (DIR*)0; }
+struct dirent* readdir(DIR*) { return (struct dirent*)0; }
+int            readdir_r(DIR*, struct dirent*, struct dirent**) { return 0; }
+void           rewinddir(DIR*) { return; }
+void           seekdir(DIR*, long int) { return; }
+long int       telldir(DIR*) { return 0; }
+
+// #include <fcntl.h>
+int creat(const char*, mode_t) { return 0; }
+int fcntl(int, int, ...) { return 0; }
+int open(const char*, int, ...) { return 0; }
+int posix_fadvise(int, off_t, off_t, int) { return 0; }
+int posix_fallocate(int, off_t, off_t) { return 0; }
+
+// #include <stdlib.h>
+char* realpath(const char* restrict path, char* restrict resolved_path) { return (char*)0; }
 
 // #include <sys/stat.h>
 int    chmod(const char*, mode_t) { return 0; }
@@ -100,3 +122,16 @@ int        unlink(const char*) { return 0; }
 int        usleep(useconds_t) { return 0; }
 pid_t      vfork(void) { return 0; }
 ssize_t    write(int, const void*, size_t) { return 0; }
+
+#ifndef PAGESIZE
+#define PAGESIZE 65536
+#endif
+int getpagesize(void) { return PAGESIZE; }
+
+#include <pwd.h>
+
+struct passwd* getpwuid(uid_t uid) { return (struct passwd*)0; }
+int            getpwuid_r(uid_t uid, struct passwd* pwd, char* buffer, size_t bufsize,
+                          struct passwd** result) {
+    return 0;
+}

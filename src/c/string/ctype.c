@@ -10,6 +10,11 @@ int isdigit(int c) {
     return (ch - '0') < 10;
 }
 
+int isxdigit(int c) {
+    const unsigned ch = c;
+    return isdigit(ch) || (ch | 32) - 'a' < 6;
+}
+
 int isalnum(int c) { return isalpha(c) || isdigit(c); }
 
 int isgraph(int c) {
@@ -34,5 +39,10 @@ int isspace(int c) {
 
 int tolower(int c) {
     if (isupper(c)) return c + ('a' - 'A');
+    return c;
+}
+
+int toupper(int c) {
+    if (islower(c)) return c - ('a' - 'A');
     return c;
 }

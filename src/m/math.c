@@ -1,22 +1,26 @@
 #include <math.h>
+#include <stdlib.h>
 
 #include "src/wasm.h"
+
+#if !defined(__has_builtin)
+#define __has_builtin(x) 0
+#endif
 
 WASM_IMPORT("math", "round") double _round_impl(double);
 WASM_IMPORT("math", "floor") double _floor_impl(double);
 WASM_IMPORT("math", "ceil") double _ceil_impl(double);
+WASM_IMPORT("math", "sqrt") double _sqrt_impl(double);
 
 WASM_IMPORT("math", "log") double _log_impl(double);
 WASM_IMPORT("math", "log2") double _log2_impl(double);
 WASM_IMPORT("math", "log10") double _log10_impl(double);
 WASM_IMPORT("math", "exp") double _exp_impl(double);
 WASM_IMPORT("math", "pow") double _pow_impl(double, double);
-WASM_IMPORT("math", "sqrt") double _sqrt_impl(double);
 
 WASM_IMPORT("math", "sin") double _sin_impl(double);
 WASM_IMPORT("math", "cos") double _cos_impl(double);
 WASM_IMPORT("math", "tan") double _tan_impl(double);
-
 WASM_IMPORT("math", "asin") double _asin_impl(double);
 WASM_IMPORT("math", "acos") double _acos_impl(double);
 WASM_IMPORT("math", "atan") double _atan_impl(double);
@@ -25,10 +29,11 @@ WASM_IMPORT("math", "atan2") double _atan2_impl(double, double);
 WASM_IMPORT("math", "sinh") double _sinh_impl(double);
 WASM_IMPORT("math", "cosh") double _cosh_impl(double);
 WASM_IMPORT("math", "tanh") double _tanh_impl(double);
-
 WASM_IMPORT("math", "asinh") double _asinh_impl(double);
 WASM_IMPORT("math", "acosh") double _acosh_impl(double);
 WASM_IMPORT("math", "atanh") double _atanh_impl(double);
+
+WASM_IMPORT("math", "random") double _random_impl();
 
 // Double precision intrinsics
 
@@ -77,6 +82,14 @@ double fmod(double x, double y) {
     return __builtin_fmod(x, y);
 #else
     return x - y * (int)(x / y);
+#endif
+}
+
+double ldexp(double x, int exp) {
+#if __has_builtin(__builtin_ldexp)
+    return __builtin_ldexp(x, exp);
+#else
+    return x * pow(2, exp);
 #endif
 }
 
@@ -153,6 +166,14 @@ float fmodf(float x, float y) {
 #endif
 }
 
+float ldexpf(float x, int exp) {
+#if __has_builtin(__builtin_ldexpf)
+    return __builtin_ldexpf(x, exp);
+#else
+    return x * powf(2, exp);
+#endif
+}
+
 // Single precision functions imported from javascript
 
 float logf(float x) { return _log_impl(x); }
@@ -179,3 +200,25 @@ float atanhf(float x) { return _atanh_impl(x); }
 // Exceptions
 int feclearexcept(int excepts) { return 0; }
 int fetestexcept(int excepts) { return 0; }
+
+// Random
+
+void srand(unsigned seed) {}
+int  rand() { return _random_impl() * RAND_MAX; }
+
+// NaN
+
+double nan(const char* tagp) {
+#if __has_builtin(__builtin_nan)
+    return __builtin_nan(tagp);
+#else
+    return 0.0 / 0.0;
+#endif
+}
+float nanf(const char* tagp) {
+#if __has_builtin(__builtin_nanf)
+    return __builtin_nanf(tagp);
+#else
+    return 0.0f / 0.0f;
+#endif
+}
