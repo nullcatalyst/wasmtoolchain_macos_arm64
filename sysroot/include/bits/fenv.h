@@ -1,4 +1,9 @@
-#define FE_ALL_EXCEPT 0
+#define FE_ALL_EXCEPT 0x0ff
+#define FE_INEXACT    0x010
+#define FE_UNDERFLOW  0x008
+#define FE_OVERFLOW   0x004
+#define FE_DIVBYZERO  0x002
+#define FE_INVALID    0x001
 
 #define FE_TONEAREST  0
 #define FE_DOWNWARD   0x400

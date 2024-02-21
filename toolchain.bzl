@@ -100,10 +100,10 @@ def _wasm_toolchain_config_impl(ctx):
                     flag_group(
                         flags = link_flags + [
                             "--target=wasm32-unknown-unknown",
-                            "-Wl,--no-entry",
-                            "-Wl,--export-table",
                             "--no-standard-libraries",
-                            "-Wl,--allow-undefined",
+                            "-Wl,--no-entry",
+                            # "-Wl,--export-table",
+                            # "-Wl,--allow-undefined",
                         ],
                     ),
                 ]),

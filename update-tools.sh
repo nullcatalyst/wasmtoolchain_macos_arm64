@@ -12,9 +12,9 @@ bazel build -c opt --copt=-Os @llvm-project//llvm:llvm-ar
 # mismatch
 
 # Copy the tools to the right place
-cp bazel-bin/external/llvm-project~override/clang/clang   tools/clang
-cp bazel-bin/external/llvm-project~override/lld/lld       tools/lld
-cp bazel-bin/external/llvm-project~override/llvm/llvm-ar  tools/llvm-ar
+cp -f bazel-bin/external/llvm-project~override/clang/clang   tools/clang
+cp -f bazel-bin/external/llvm-project~override/lld/lld       tools/lld
+cp -f bazel-bin/external/llvm-project~override/llvm/llvm-ar  tools/llvm-ar
 
 cd tools
 ln -s clang clang++

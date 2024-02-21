@@ -1,0 +1,42 @@
+diff --git a/lld/wasm/Writer.cpp b/lld/wasm/Writer.cpp
+index eb64783..5bc4725 100644
+--- a/lld/wasm/Writer.cpp	
++++ b/lld/wasm/Writer.cpp
+@@ -1545,13 +1545,13 @@ void Writer::createCommandExportWrapper(uint32_t functionIndex,
+     raw_string_ostream os(bodyContent);
+     writeUleb128(os, 0, "num locals");
+ 
+-    // Call `__wasm_call_ctors` which call static constructors (and
+-    // applies any runtime relocations in Emscripten-style PIC mode)
+-    if (WasmSym::callCtors->isLive()) {
+-      writeU8(os, WASM_OPCODE_CALL, "CALL");
+-      writeUleb128(os, WasmSym::callCtors->getFunctionIndex(),
+-                   "function index");
+-    }
++    // // Call `__wasm_call_ctors` which call static constructors (and
++    // // applies any runtime relocations in Emscripten-style PIC mode)
++    // if (WasmSym::callCtors->isLive()) {
++    //   writeU8(os, WASM_OPCODE_CALL, "CALL");
++    //   writeUleb128(os, WasmSym::callCtors->getFunctionIndex(),
++    //                "function index");
++    // }
+ 
+     // Call the user's code, leaving any return values on the operand stack.
+     for (size_t i = 0; i < f->signature->Params.size(); ++i) {
+@@ -1561,11 +1561,11 @@ void Writer::createCommandExportWrapper(uint32_t functionIndex,
+     writeU8(os, WASM_OPCODE_CALL, "CALL");
+     writeUleb128(os, functionIndex, "function index");
+ 
+-    // Call the function that calls the destructors.
+-    if (DefinedFunction *callDtors = WasmSym::callDtors) {
+-      writeU8(os, WASM_OPCODE_CALL, "CALL");
+-      writeUleb128(os, callDtors->getFunctionIndex(), "function index");
+-    }
++    // // Call the function that calls the destructors.
++    // if (DefinedFunction *callDtors = WasmSym::callDtors) {
++    //   writeU8(os, WASM_OPCODE_CALL, "CALL");
++    //   writeUleb128(os, callDtors->getFunctionIndex(), "function index");
++    // }
+ 
+     // End the function, returning the return values from the user's code.
+     writeU8(os, WASM_OPCODE_END, "END");
