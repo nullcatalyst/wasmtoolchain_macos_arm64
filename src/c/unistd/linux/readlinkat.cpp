@@ -27,7 +27,7 @@ LLVM_LIBC_FUNCTION(ssize_t, readlinkat,
   //   return -1;
   // }
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

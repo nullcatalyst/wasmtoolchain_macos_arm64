@@ -1,4 +1,6 @@
 #include <limits.h>
 #include <stdlib.h>
 
-char* realpath(const char* restrict path, char* restrict resolved_path) { __builtin_trap(); }
+#include "src/c/__custom/panic.h"
+
+char* realpath(const char* restrict path, char* restrict resolved_path) { __WASM_PANIC(); }

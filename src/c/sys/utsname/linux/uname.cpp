@@ -24,7 +24,7 @@ LLVM_LIBC_FUNCTION(int, uname, (struct utsname * name)) {
   //   return 1;
   // libc_errno = -ret;
   // return -1;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

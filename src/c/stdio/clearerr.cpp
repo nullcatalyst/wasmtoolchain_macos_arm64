@@ -16,7 +16,7 @@ namespace __llvm_libc {
 
 LLVM_LIBC_FUNCTION(void, clearerr, (::FILE * stream)) {
   // reinterpret_cast<__llvm_libc::File *>(stream)->clearerr();
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

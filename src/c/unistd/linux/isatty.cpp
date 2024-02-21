@@ -28,7 +28,7 @@ LLVM_LIBC_FUNCTION(int, isatty, (int fd)) {
 
   // libc_errno = -result;
   // return 0;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

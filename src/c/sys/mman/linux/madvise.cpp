@@ -30,7 +30,7 @@ LLVM_LIBC_FUNCTION(int, madvise, (void *addr, size_t size, int advice)) {
   // }
 
   // return 0;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

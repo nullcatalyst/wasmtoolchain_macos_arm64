@@ -16,7 +16,7 @@ namespace __llvm_libc {
 
 LLVM_LIBC_FUNCTION(int, ferror_unlocked, (::FILE * stream)) {
   // return reinterpret_cast<__llvm_libc::File *>(stream)->error_unlocked();
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

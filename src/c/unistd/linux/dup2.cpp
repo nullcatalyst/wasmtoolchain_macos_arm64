@@ -42,7 +42,7 @@ LLVM_LIBC_FUNCTION(int, dup2, (int oldfd, int newfd)) {
 //     return -1;
 //   }
 //   return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

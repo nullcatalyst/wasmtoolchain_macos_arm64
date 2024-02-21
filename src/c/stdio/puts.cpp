@@ -35,7 +35,7 @@ LLVM_LIBC_FUNCTION(int, puts, (const char *__restrict str)) {
   //   return EOF;
   // }
   // return 0;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

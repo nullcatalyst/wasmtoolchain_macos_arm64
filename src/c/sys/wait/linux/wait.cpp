@@ -29,7 +29,7 @@ LLVM_LIBC_FUNCTION(pid_t, wait, (int *wait_status)) {
   // }
 
   // return pid;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

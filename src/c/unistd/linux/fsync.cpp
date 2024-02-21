@@ -23,7 +23,7 @@ LLVM_LIBC_FUNCTION(int, fsync, (int fd)) {
   //   return -1;
   // }
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

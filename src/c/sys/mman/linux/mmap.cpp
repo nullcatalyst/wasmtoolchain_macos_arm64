@@ -58,7 +58,7 @@ LLVM_LIBC_FUNCTION(void *, mmap,
 //   }
 
 //   return reinterpret_cast<void *>(ret_val);
-  return nullptr;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

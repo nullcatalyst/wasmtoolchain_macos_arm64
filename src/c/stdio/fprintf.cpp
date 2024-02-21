@@ -29,7 +29,7 @@ LLVM_LIBC_FUNCTION(int, fprintf,
   // va_end(vlist);
   // int ret_val = printf_core::vfprintf_internal(stream, format, args);
   // return ret_val;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

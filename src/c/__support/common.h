@@ -12,6 +12,8 @@
 #include "src/c/__support/macros/attributes.h"
 #include "src/c/__support/macros/properties/architectures.h"
 
+#include "src/c/__custom/panic.h"
+
 #ifndef LLVM_LIBC_FUNCTION_ATTR
 #define LLVM_LIBC_FUNCTION_ATTR
 #endif

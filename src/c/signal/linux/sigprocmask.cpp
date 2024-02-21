@@ -28,7 +28,7 @@ LLVM_LIBC_FUNCTION(int, sigprocmask,
 
   // libc_errno = -ret;
   // return -1;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

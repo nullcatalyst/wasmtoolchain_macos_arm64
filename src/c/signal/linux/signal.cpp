@@ -22,7 +22,7 @@ LLVM_LIBC_FUNCTION(sighandler_t, signal, (int signum, sighandler_t handler)) {
   // // Errno will already be set so no need to worry about changing errno here.
   // return __llvm_libc::sigaction(signum, &action, &old) == -1 ? SIG_ERR
   //                                                            : old.sa_handler;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

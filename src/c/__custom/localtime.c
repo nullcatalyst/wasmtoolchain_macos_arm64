@@ -1,7 +1,9 @@
 #include <time.h>
 
-struct tm* localtime(const time_t* timer) { __builtin_trap(); }
+#include "src/c/__custom/panic.h"
+
+struct tm* localtime(const time_t* timer) { __WASM_PANIC(); }
 
 struct tm* localtime_r(const time_t* restrict timer, struct tm* restrict result) {
-    __builtin_trap();
+    __WASM_PANIC();
 }

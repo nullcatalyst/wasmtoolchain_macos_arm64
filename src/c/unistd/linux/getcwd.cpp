@@ -61,7 +61,7 @@ LLVM_LIBC_FUNCTION(char *, getcwd, (char *buf, size_t size)) {
   // if (!getcwd_syscall(buf, size))
   //   return nullptr;
   // return buf;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

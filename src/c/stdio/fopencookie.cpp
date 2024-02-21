@@ -94,7 +94,7 @@ LLVM_LIBC_FUNCTION(::FILE *, fopencookie,
   // if (!ac)
   //   return nullptr;
   // return reinterpret_cast<::FILE *>(file);
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

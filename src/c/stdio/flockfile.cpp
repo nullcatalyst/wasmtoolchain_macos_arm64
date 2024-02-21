@@ -16,7 +16,7 @@ namespace __llvm_libc {
 
 LLVM_LIBC_FUNCTION(void, flockfile, (::FILE * stream)) {
   // reinterpret_cast<__llvm_libc::File *>(stream)->lock();
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

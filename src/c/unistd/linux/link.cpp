@@ -31,7 +31,7 @@ LLVM_LIBC_FUNCTION(int, link, (const char *path1, const char *path2)) {
 //     return -1;
 //   }
 //   return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

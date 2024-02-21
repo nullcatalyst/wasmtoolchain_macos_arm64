@@ -22,7 +22,7 @@ LLVM_LIBC_FUNCTION(long, ftell, (::FILE * stream)) {
   //   return -1;
   // }
   // return result.value();
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

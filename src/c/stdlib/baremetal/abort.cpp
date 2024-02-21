@@ -12,6 +12,6 @@
 
 namespace __llvm_libc {
 
-LLVM_LIBC_FUNCTION(void, abort, ()) { __builtin_trap(); }
+LLVM_LIBC_FUNCTION(void, abort, ()) { __WASM_PANIC(); }
 
 } // namespace __llvm_libc

@@ -45,7 +45,7 @@ LLVM_LIBC_FUNCTION(int, sigaction,
   // if (libc_old)
   //   *libc_old = kernel_old;
   // return 0;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

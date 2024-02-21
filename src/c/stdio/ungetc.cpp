@@ -16,7 +16,7 @@ namespace __llvm_libc {
 
 LLVM_LIBC_FUNCTION(int, ungetc, (int c, ::FILE *stream)) {
   // return reinterpret_cast<__llvm_libc::File *>(stream)->ungetc(c);
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

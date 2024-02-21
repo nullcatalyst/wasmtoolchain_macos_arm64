@@ -60,7 +60,7 @@ LLVM_LIBC_FUNCTION(int, select,
   //   return -1;
   // }
   // return ret;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

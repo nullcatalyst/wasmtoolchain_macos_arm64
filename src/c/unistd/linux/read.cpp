@@ -23,7 +23,7 @@ LLVM_LIBC_FUNCTION(ssize_t, read, (int fd, void *buf, size_t count)) {
   //   return -1;
   // }
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

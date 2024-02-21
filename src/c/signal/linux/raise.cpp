@@ -21,7 +21,7 @@ LLVM_LIBC_FUNCTION(int, raise, (int sig)) {
   // int ret = __llvm_libc::syscall_impl(SYS_tgkill, pid, tid, sig);
   // restore_signals(sigset);
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

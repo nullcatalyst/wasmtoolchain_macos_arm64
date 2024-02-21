@@ -29,7 +29,7 @@ LLVM_LIBC_FUNCTION(int, unlinkat, (int dfd, const char *path, int flags)) {
 //     return -1;
 //   }
 //   return 0;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

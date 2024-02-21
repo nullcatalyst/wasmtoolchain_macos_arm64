@@ -1,5 +1,7 @@
 #include <sys/statvfs.h>
 
-int statvfs(const char* restrict path, struct statvfs* restrict buf) { __builtin_trap(); }
+#include "src/c/__custom/panic.h"
 
-int fstatvfs(int fd, struct statvfs* buf) { __builtin_trap(); }
+int statvfs(const char* restrict path, struct statvfs* restrict buf) { __WASM_PANIC(); }
+
+int fstatvfs(int fd, struct statvfs* buf) { __WASM_PANIC(); }

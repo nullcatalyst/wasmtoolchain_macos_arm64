@@ -28,7 +28,7 @@ LLVM_LIBC_FUNCTION(long, sysconf, (int name)) {
   //   return -1;
   // }
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

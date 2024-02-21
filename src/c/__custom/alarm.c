@@ -1,5 +1,6 @@
 #include <unistd.h>
+#include "src/c/__custom/panic.h"
 
 unsigned int alarm(unsigned int seconds) {
-    __builtin_trap();
+    __WASM_PANIC();
 }

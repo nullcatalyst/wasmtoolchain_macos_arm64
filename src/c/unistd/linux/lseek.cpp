@@ -34,7 +34,9 @@ LLVM_LIBC_FUNCTION(off_t, lseek, (int fd, off_t offset, int whence)) {
 //     return -1;
 //   }
 //   return result;
-  __builtin_trap();
+
+  return -1;
+  // __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

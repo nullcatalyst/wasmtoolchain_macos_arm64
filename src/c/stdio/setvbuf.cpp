@@ -23,7 +23,7 @@ LLVM_LIBC_FUNCTION(int, setvbuf,
   // if (err != 0)
   //   libc_errno = err;
   // return err;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

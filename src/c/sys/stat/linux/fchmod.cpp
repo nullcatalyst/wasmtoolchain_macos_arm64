@@ -25,7 +25,7 @@ LLVM_LIBC_FUNCTION(int, fchmod, (int fd, mode_t mode)) {
   //   return -1;
   // }
   // return 0;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

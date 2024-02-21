@@ -2,6 +2,7 @@ cc_library(
     name = "rt",
     srcs = [
         # "spawn.c",
+        "empty.c",
     ],
     copts = [
         "-Wno-c2x-extensions",

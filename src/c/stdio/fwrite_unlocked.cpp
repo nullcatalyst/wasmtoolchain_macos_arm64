@@ -27,7 +27,7 @@ LLVM_LIBC_FUNCTION(size_t, fwrite_unlocked,
   //   libc_errno = result.error;
 
   // return result.value / size;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

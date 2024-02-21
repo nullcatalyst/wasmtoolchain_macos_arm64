@@ -33,7 +33,7 @@ LLVM_LIBC_FUNCTION(int, sprintf,
   // int ret_val = printf_core::printf_main(&writer, format, args);
   // wb.buff[wb.buff_cur] = '\0';
   // return ret_val;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

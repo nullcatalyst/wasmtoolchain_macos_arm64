@@ -26,7 +26,7 @@ LLVM_LIBC_FUNCTION(int, posix_madvise, (void *addr, size_t size, int advice)) {
   // long ret_val = __llvm_libc::syscall_impl(
   //     SYS_madvise, reinterpret_cast<long>(addr), size, advice);
   // return ret_val < 0 ? -ret_val : 0;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

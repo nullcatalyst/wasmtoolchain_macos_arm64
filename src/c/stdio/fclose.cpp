@@ -21,7 +21,7 @@ LLVM_LIBC_FUNCTION(int, fclose, (::FILE * stream)) {
   //   libc_errno = result;
   //   return EOF;
   // }
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

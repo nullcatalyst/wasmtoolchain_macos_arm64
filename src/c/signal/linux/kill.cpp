@@ -29,7 +29,7 @@ LLVM_LIBC_FUNCTION(int, kill, (pid_t pid, int sig)) {
   // }
 
   // return ret; // always 0
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

@@ -51,7 +51,7 @@ LLVM_LIBC_FUNCTION(char *, fgets,
 
   // str[i] = '\0';
   // return str;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

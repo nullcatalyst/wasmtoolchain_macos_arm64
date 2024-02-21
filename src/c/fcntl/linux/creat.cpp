@@ -31,7 +31,7 @@ LLVM_LIBC_FUNCTION(int, creat, (const char *path, int mode_flags)) {
 
 //   libc_errno = -fd;
 //   return -1;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

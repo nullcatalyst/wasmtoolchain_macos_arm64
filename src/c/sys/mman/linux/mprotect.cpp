@@ -30,7 +30,7 @@ LLVM_LIBC_FUNCTION(int, mprotect, (void *addr, size_t size, int prot)) {
   // }
 
   // return 0;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

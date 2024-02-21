@@ -1,5 +1,5 @@
 #include <fcntl.h>
 
-int fcntl(int fd, int cmd, ... /* arg */ ) {
-    __builtin_trap();
-}
+#include "src/c/__custom/panic.h"
+
+int fcntl(int fd, int cmd, ... /* arg */) { __WASM_PANIC(); }

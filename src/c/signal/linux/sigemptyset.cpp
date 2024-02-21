@@ -23,7 +23,7 @@ LLVM_LIBC_FUNCTION(int, sigemptyset, (sigset_t * set)) {
   // }
   // *set = empty_set();
   // return 0;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

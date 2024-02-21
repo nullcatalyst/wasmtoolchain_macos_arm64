@@ -49,7 +49,7 @@ LLVM_LIBC_FUNCTION(pid_t, fork, (void)) {
 
 //   invoke_parent_callbacks();
 //   return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

@@ -24,7 +24,7 @@ LLVM_LIBC_FUNCTION(ssize_t, getrandom,
   //   return -1;
   // }
   // return ret;
-  return 0;
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

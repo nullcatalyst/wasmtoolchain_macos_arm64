@@ -34,7 +34,7 @@ LLVM_LIBC_FUNCTION(int, printf, (const char *__restrict format, ...)) {
   // int ret_val = printf_core::vfprintf_internal(
   //     reinterpret_cast<::FILE *>(PRINTF_STDOUT), format, args);
   // return ret_val;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

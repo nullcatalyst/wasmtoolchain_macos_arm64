@@ -33,7 +33,7 @@ LLVM_LIBC_FUNCTION(int, snprintf,
   // if (buffsz > 0) // if the buffsz is 0 the buffer may be a null pointer.
   //   wb.buff[wb.buff_cur] = '\0';
   // return ret_val;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

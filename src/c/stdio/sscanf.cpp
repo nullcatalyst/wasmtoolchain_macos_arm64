@@ -33,7 +33,7 @@ LLVM_LIBC_FUNCTION(int, sscanf,
   // // This is done to avoid including stdio.h in the internals. On most systems
   // // EOF is -1, so this will be transformed into just "return ret_val".
   // return (ret_val == -1) ? EOF : ret_val;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

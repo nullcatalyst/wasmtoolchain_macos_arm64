@@ -20,7 +20,7 @@ LLVM_LIBC_FUNCTION(int, sigaddset, (sigset_t * set, int signum)) {
   //   return 0;
   // libc_errno = EINVAL;
   // return -1;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

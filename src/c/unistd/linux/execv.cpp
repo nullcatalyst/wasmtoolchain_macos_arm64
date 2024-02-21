@@ -28,7 +28,7 @@ LLVM_LIBC_FUNCTION(int, execv, (const char *path, char *const argv[])) {
   // // Control will not reach here on success but have a return statement will
   // // keep the compilers happy.
   // return ret;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

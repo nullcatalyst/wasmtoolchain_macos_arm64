@@ -1,3 +1,5 @@
 #include <sys/resource.h>
 
-int getrusage(int who, struct rusage* usage) { __builtin_trap(); }
+#include "src/c/__custom/panic.h"
+
+int getrusage(int who, struct rusage* usage) { __WASM_PANIC(); }

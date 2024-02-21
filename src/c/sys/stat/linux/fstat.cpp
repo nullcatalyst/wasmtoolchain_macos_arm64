@@ -24,7 +24,9 @@ LLVM_LIBC_FUNCTION(int, fstat, (int fd, struct stat *statbuf)) {
   //   return -1;
   // }
   // return 0;
-  return 0;
+
+  return -1;
+  // __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

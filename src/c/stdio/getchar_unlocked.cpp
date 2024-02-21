@@ -24,7 +24,7 @@ LLVM_LIBC_FUNCTION(int, getchar_unlocked, ()) {
   // if (result.value != 1)
   //   return EOF;
   // return c;
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc

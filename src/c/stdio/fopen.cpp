@@ -23,7 +23,7 @@ LLVM_LIBC_FUNCTION(::FILE *, fopen,
   //   return nullptr;
   // }
   // return reinterpret_cast<::FILE *>(result.value());
-  __builtin_trap();
+  __WASM_PANIC();
 }
 
 } // namespace __llvm_libc
