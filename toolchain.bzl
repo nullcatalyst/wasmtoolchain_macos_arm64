@@ -134,6 +134,13 @@ def _wasm_toolchain_config_impl(ctx):
                     flag_group(
                         flags = [
                             "--target=wasm32-unknown-unknown",
+                            "-mmutable-globals",
+                            "-msign-ext",
+                            "-mnontrapping-fptoint",
+                            "-msimd128",
+                            "-mmultivalue",
+                            "-U_WIN32",
+                            "-U__APPLE__",
                             "-D__wasm__=1",
                             "-D__wasm32__=1",
                             # Fake being exmpscripten, as there is better support for emscripten
