@@ -1,6 +1,6 @@
 #include <sys/statvfs.h>
 
-#include "src/c/__custom/panic.h"
+#include "src/wasm.h"
 
 int statvfs(const char* restrict path, struct statvfs* restrict buf) { __WASM_PANIC(); }
 

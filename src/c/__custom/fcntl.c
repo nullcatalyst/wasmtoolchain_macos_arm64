@@ -1,5 +1,5 @@
 #include <fcntl.h>
 
-#include "src/c/__custom/panic.h"
+#include "src/wasm.h"
 
 int fcntl(int fd, int cmd, ... /* arg */) { __WASM_PANIC(); }

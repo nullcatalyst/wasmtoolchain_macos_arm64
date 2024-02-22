@@ -1,3 +1,4 @@
+#include <__config>
 #include <mutex>
 #include <shared_mutex>
 
@@ -9,7 +10,7 @@ _LIBCPP_BEGIN_NAMESPACE_STD
 
 // Shared Mutex Base
 
-__shared_mutex_base::__shared_mutex_base() : __state_(0) {}
+__shared_mutex_base::__shared_mutex_base() {}
 
 void __shared_mutex_base::lock() {}
 
@@ -24,6 +25,8 @@ bool __shared_mutex_base::try_lock_shared() { return true; }
 void __shared_mutex_base::unlock_shared() {}
 
 // Regular Mutex
+
+mutex::~mutex() {}
 
 void mutex::lock() {}
 

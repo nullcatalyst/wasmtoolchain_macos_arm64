@@ -1,5 +1,5 @@
 #include <sys/resource.h>
 
-#include "src/c/__custom/panic.h"
+#include "src/wasm.h"
 
 int getrusage(int who, struct rusage* usage) { __WASM_PANIC(); }

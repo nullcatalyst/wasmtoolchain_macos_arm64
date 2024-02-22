@@ -15,9 +15,6 @@ cc_library(
     ),
     copts = [
         "-fno-builtin",
-        # "-fno-builtin-memcpy",
-        # "-fno-builtin-memmove",
-        # "-fno-builtin-memmove",
     ],
     defines = [
         "_LIBCPP_NO_EXCEPTIONS",

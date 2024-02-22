@@ -4,8 +4,10 @@ cc_library(
         "abi.cpp",
         "algorithm.cpp",
         "chrono.cpp",
+        "condition_variable.cpp",
         "error.cpp",
         "exception.cpp",
+        "future.cpp",
         "hash.cpp",
         "ios.cpp",
         "ios.instantiations.cpp",
@@ -18,6 +20,7 @@ cc_library(
         "std_stream.h",
         "string.cpp",
         "terminate.cpp",
+        "thread.cpp",
     ],
     defines = [
         "_LIBCPP_NO_EXCEPTIONS",

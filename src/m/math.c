@@ -7,6 +7,7 @@
 #define __has_builtin(x) 0
 #endif
 
+WASM_IMPORT("math", "trunc") double _trunc_impl(double);
 WASM_IMPORT("math", "round") double _round_impl(double);
 WASM_IMPORT("math", "floor") double _floor_impl(double);
 WASM_IMPORT("math", "ceil") double _ceil_impl(double);
@@ -36,6 +37,14 @@ WASM_IMPORT("math", "atanh") double _atanh_impl(double);
 WASM_IMPORT("math", "random") double _random_impl();
 
 // Double precision intrinsics
+
+double trunc(double x) {
+#if __has_builtin(__builtin_trunc)
+    return __builtin_trunc(x);
+#else
+    return _trunc_impl(x);
+#endif
+}
 
 double round(double x) {
 #if __has_builtin(__builtin_round)
@@ -85,6 +94,15 @@ double fmod(double x, double y) {
 #endif
 }
 
+double modf(double value, double* intpart) {
+#if __has_builtin(__builtin_modf)
+    return __builtin_modf(value, intpart);
+#else
+    *intpart = trunc(value);
+    return value - *intpart;
+#endif
+}
+
 double ldexp(double x, int exp) {
 #if __has_builtin(__builtin_ldexp)
     return __builtin_ldexp(x, exp);
@@ -117,6 +135,14 @@ double acosh(double x) { return _acosh_impl(x); }
 double atanh(double x) { return _atanh_impl(x); }
 
 // Single precision intrinsics
+
+float truncf(float x) {
+#if __has_builtin(__builtin_truncf)
+    return __builtin_truncf(x);
+#else
+    return _trunc_impl(x);
+#endif
+}
 
 float roundf(float x) {
 #if __has_builtin(__builtin_roundf)
@@ -163,6 +189,15 @@ float fmodf(float x, float y) {
     return __builtin_fmodf(x, y);
 #else
     return x - y * (int)(x / y);
+#endif
+}
+
+float modff(float value, float* intpart) {
+#if __has_builtin(__builtin_modff)
+    return __builtin_modff(value, intpart);
+#else
+    *intpart = trunc(value);
+    return value - *intpart;
 #endif
 }
 

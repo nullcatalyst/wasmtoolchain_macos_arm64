@@ -1,7 +1,7 @@
 #include <pwd.h>
 #include <stddef.h>
 
-#include "src/c/__custom/panic.h"
+#include "src/wasm.h"
 
 struct passwd* getpwuid(uid_t uid) { __WASM_PANIC(); }
 
