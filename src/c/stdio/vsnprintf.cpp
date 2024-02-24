@@ -6,7 +6,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "src/c/stdio/snprintf.h"
+#include "src/c/stdio/vsnprintf.h"
 
 #include "src/c/__support/arg_list.h"
 #include "src/c/stdio/printf_core/printf_main.h"
@@ -17,15 +17,13 @@
 
 namespace __llvm_libc {
 
-LLVM_LIBC_FUNCTION(int, snprintf,
+LLVM_LIBC_FUNCTION(int, vsnprintf,
                    (char *__restrict buffer, size_t buffsz,
-                    const char *__restrict format, ...)) {
-  va_list vlist;
-  va_start(vlist, format);
+                    const char *__restrict format, va_list vlist)) {
   internal::ArgList args(vlist); // This holder class allows for easier copying
                                  // and pointer semantics, as well as handling
                                  // destruction automatically.
-  va_end(vlist);
+
   printf_core::WriteBuffer wb(buffer, (buffsz > 0 ? buffsz - 1 : 0));
   printf_core::Writer writer(&wb);
 

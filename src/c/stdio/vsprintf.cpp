@@ -6,7 +6,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "src/c/stdio/sprintf.h"
+#include "src/c/stdio/vsprintf.h"
 
 #include "src/c/__support/CPP/limits.h"
 #include "src/c/__support/arg_list.h"
@@ -17,15 +17,10 @@
 
 namespace __llvm_libc {
 
-LLVM_LIBC_FUNCTION(int, sprintf,
+LLVM_LIBC_FUNCTION(int, vsprintf,
                    (char *__restrict buffer, const char *__restrict format,
-                    ...)) {
-  va_list vlist;
-  va_start(vlist, format);
-  internal::ArgList args(vlist); // This holder class allows for easier copying
-                                 // and pointer semantics, as well as handling
-                                 // destruction automatically.
-  va_end(vlist);
+                    va_list vlist)) {
+  internal::ArgList args(vlist);
 
   printf_core::WriteBuffer wb(buffer, cpp::numeric_limits<size_t>::max());
   printf_core::Writer writer(&wb);
