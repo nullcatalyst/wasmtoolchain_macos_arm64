@@ -13,9 +13,9 @@ cc_library(
             "math/**",
         ],
     ),
-    copts = [
-        "-fno-builtin",
-    ],
+    # copts = [
+    #     "-fno-builtin",
+    # ],
     defines = [
         "_LIBCPP_NO_EXCEPTIONS",
         "_LIBCPP_HAS_NO_EXCEPTIONS",

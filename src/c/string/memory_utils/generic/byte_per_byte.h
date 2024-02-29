@@ -20,7 +20,7 @@
 
 namespace __llvm_libc {
 
-[[maybe_unused]] LIBC_INLINE void
+[[maybe_unused]] __attribute__((no_builtin("memcpy"))) LIBC_INLINE void
 inline_memcpy_byte_per_byte(Ptr dst, CPtr src, size_t count,
                             size_t offset = 0) {
   LIBC_LOOP_NOUNROLL
@@ -28,7 +28,7 @@ inline_memcpy_byte_per_byte(Ptr dst, CPtr src, size_t count,
     dst[offset] = src[offset];
 }
 
-[[maybe_unused]] LIBC_INLINE void
+[[maybe_unused]] __attribute__((no_builtin("memmove"))) LIBC_INLINE void
 inline_memmove_byte_per_byte(Ptr dst, CPtr src, size_t count) {
   if (count == 0 || dst == src)
     return;
@@ -43,7 +43,7 @@ inline_memmove_byte_per_byte(Ptr dst, CPtr src, size_t count) {
   }
 }
 
-[[maybe_unused]] LIBC_INLINE static void
+[[maybe_unused]] __attribute__((no_builtin("memset"))) LIBC_INLINE static void
 inline_memset_byte_per_byte(Ptr dst, uint8_t value, size_t count,
                             size_t offset = 0) {
   LIBC_LOOP_NOUNROLL
@@ -51,7 +51,7 @@ inline_memset_byte_per_byte(Ptr dst, uint8_t value, size_t count,
     dst[offset] = static_cast<cpp::byte>(value);
 }
 
-[[maybe_unused]] LIBC_INLINE BcmpReturnType
+[[maybe_unused]] __attribute__((no_builtin("bcmp"))) LIBC_INLINE BcmpReturnType
 inline_bcmp_byte_per_byte(CPtr p1, CPtr p2, size_t count, size_t offset = 0) {
   LIBC_LOOP_NOUNROLL
   for (; offset < count; ++offset)
@@ -60,7 +60,7 @@ inline_bcmp_byte_per_byte(CPtr p1, CPtr p2, size_t count, size_t offset = 0) {
   return BcmpReturnType::ZERO();
 }
 
-[[maybe_unused]] LIBC_INLINE MemcmpReturnType
+[[maybe_unused]] __attribute__((no_builtin("memcmp"))) LIBC_INLINE MemcmpReturnType
 inline_memcmp_byte_per_byte(CPtr p1, CPtr p2, size_t count, size_t offset = 0) {
   LIBC_LOOP_NOUNROLL
   for (; offset < count; ++offset) {
