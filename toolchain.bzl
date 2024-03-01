@@ -86,9 +86,9 @@ def _wasm_toolchain_config_impl(ctx):
     if include_stdlib:
         link_flags = [
             "-L" + _sysroot_path(ctx, "lib"),
-            "-lc",
-            "-lc++",
-            "-ldlmalloc",
+            # "-lc",
+            # "-lc++",
+            # "-ldlmalloc",
         ]
     default_linker_flags = feature(
         name = "default_linker_flags",
