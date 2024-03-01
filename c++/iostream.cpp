@@ -7,7 +7,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <__locale>
-#include "src/c++/std_stream.h"
+#include "c++/std_stream.h"
 #include <new>
 #include <string>
 

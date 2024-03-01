@@ -1,4 +1,4 @@
-load("//:wasm_cc.bzl", "wasm_cc_library")
+load("//:wasm_rules.bzl", "wasm_cc_library")
 
 wasm_cc_library(
     name = "__support",
@@ -38,6 +38,22 @@ wasm_cc_library(
         "wchar/**/*.h",
         "wchar/**/*.c",
         "wchar/**/*.cpp",
+    ]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":__support",
+        "//c:wasm",
+    ],
+)
+
+wasm_cc_library(
+    name = "stdlib",
+    srcs = glob([
+        "stdlib/**/*.h",
+        "stdlib/**/*.c",
+        "stdlib/**/*.cpp",
     ]),
     visibility = [
         "//visibility:public",

@@ -6,6 +6,7 @@ int pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict at
                    void* (*start_routine)(void*), void* restrict arg) {
     start_routine(arg);
     // __WASM_PANIC();
+    return 0;
 }
 
 int pthread_join(pthread_t thread, void** retval) { __WASM_PANIC(); }

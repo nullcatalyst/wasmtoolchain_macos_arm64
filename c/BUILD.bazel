@@ -1,4 +1,4 @@
-load("//:wasm_cc.bzl", "wasm_cc_library")
+load("//:wasm_rules.bzl", "wasm_cc_library")
 
 wasm_cc_library(
     name = "wasm",
@@ -22,6 +22,7 @@ wasm_cc_library(
         "//c/posix",
         "//c/std:runtime",
         "//c/std:stdio",
+        "//c/std:stdlib",
         "//c/std:string",
     ],
 )
