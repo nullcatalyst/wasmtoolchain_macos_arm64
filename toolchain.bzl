@@ -85,7 +85,7 @@ def _wasm_toolchain_config_impl(ctx):
     link_flags = []
     if include_stdlib:
         link_flags = [
-            "-L" + _sysroot_path(ctx, "lib"),
+            # "-L" + _sysroot_path(ctx, "lib"),
             # "-lc",
             # "-lc++",
             # "-ldlmalloc",
