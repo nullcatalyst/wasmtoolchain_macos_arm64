@@ -1,0 +1,19 @@
+cc_library(
+    name = "dlmalloc",
+    srcs = [
+        "dlmalloc.c",
+    ],
+    defines = [
+        "PAGESIZE=65536",
+    ],
+    textual_hdrs = [
+        "malloc.c",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "//src:wasm",
+        "//c:sbrk",
+    ],
+)

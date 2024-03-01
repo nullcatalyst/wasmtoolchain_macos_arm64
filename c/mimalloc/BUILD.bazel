@@ -1,0 +1,49 @@
+cc_library(
+    name = "mimalloc",
+    srcs = [
+        "src/alloc.c",
+        "src/alloc-aligned.c",
+        "src/alloc-posix.c",
+        "src/arena.c",
+        "src/bitmap.c",
+        "src/bitmap.h",
+        "src/heap.c",
+        "src/init.c",
+        "src/options.c",
+        "src/os.c",
+        "src/page.c",
+        "src/random.c",
+        "src/segment.c",
+        "src/segment-map.c",
+        "src/stats.c",
+        # "src/prim/prim.c",
+        "src/prim/wasi/prim.c",
+    ],
+    hdrs = glob([
+        "include/**/*.h",
+    ]),
+    copts = [
+        "-Wno-int-conversion",
+    ],
+    defines = [
+        "MI_OVERRIDE=1",
+        "MI_XMALLOC=1",
+        "MI_NO_PADDING=1",
+        "MI_SKIP_COLLECT_ON_EXIT=1",
+        "MI_NO_ATOMICS=1",
+        "__wasi__=1",
+    ],
+    includes = [
+        "include",
+    ],
+    textual_hdrs = [
+        "src/alloc-override.c",
+        "src/page-queue.c",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "//src:wasm",
+    ],
+)

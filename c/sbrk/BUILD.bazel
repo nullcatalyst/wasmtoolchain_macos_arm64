@@ -1,0 +1,15 @@
+cc_library(
+    name = "sbrk",
+    srcs = [
+        "sbrk.c",
+    ],
+    hdrs = [
+        "unistd.h",
+    ],
+    visibility = [
+        "//c:__subpackages__",
+    ],
+    deps = [
+        "//src:wasm",
+    ],
+)
