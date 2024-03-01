@@ -1,0 +1,88 @@
+load("//:wasm_cc.bzl", "wasm_cc_library")
+
+wasm_cc_library(
+    name = "__support",
+    srcs = glob([
+        "__support/**/*.h",
+        "__support/**/*.c",
+        "__support/**/*.cpp",
+        "errno/**/*.h",
+        "errno/**/*.c",
+        "errno/**/*.cpp",
+        # TODO: These should really be in a separate library, but they don't seem to fit anywhere
+        # very well.
+        "inttypes/**/*.h",
+        "inttypes/**/*.c",
+        "inttypes/**/*.cpp",
+    ]),
+    hdrs = glob([
+        "__support/**/*.h",
+    ]),
+    visibility = [
+        "//c:__subpackages__",
+    ],
+    deps = [
+        "//c:wasm",
+    ],
+)
+
+wasm_cc_library(
+    name = "string",
+    srcs = glob([
+        "ctype/**/*.h",
+        "ctype/**/*.c",
+        "ctype/**/*.cpp",
+        "string/**/*.h",
+        "string/**/*.c",
+        "string/**/*.cpp",
+        "wchar/**/*.h",
+        "wchar/**/*.c",
+        "wchar/**/*.cpp",
+    ]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":__support",
+        "//c:wasm",
+    ],
+)
+
+wasm_cc_library(
+    name = "stdio",
+    srcs = glob(
+        [
+            "stdio/**/*.h",
+            "stdio/**/*.c",
+            "stdio/**/*.cpp",
+        ],
+        exclude = [
+            "stdio/fopencookie.cpp",
+            "stdio/scanf_core/**",
+        ],
+    ),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":__support",
+        ":string",
+        "//c:wasm",
+    ],
+)
+
+wasm_cc_library(
+    name = "runtime",
+    srcs = glob([
+        "__runtime/**/*.h",
+        "__runtime/**/*.c",
+        "__runtime/**/*.cpp",
+    ]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":__support",
+        "//c:wasm",
+    ],
+)

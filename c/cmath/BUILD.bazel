@@ -1,0 +1,15 @@
+load("//:wasm_cc.bzl", "wasm_cc_library")
+
+wasm_cc_library(
+    name = "cmath",
+    srcs = glob([
+        "**/*.h",
+        "**/*.cpp",
+    ]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "//c/std:__support",
+    ],
+)

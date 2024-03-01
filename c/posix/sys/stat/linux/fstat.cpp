@@ -1,0 +1,32 @@
+//===-- Linux implementation of fstat -------------------------------------===//
+//
+// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+// See https://llvm.org/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+//
+//===----------------------------------------------------------------------===//
+
+#include "c/posix/sys/stat/fstat.h"
+#include "kernel_statx.h"
+#include "c/std/errno/libc_errno.h"
+
+#include "c/std/__support/common.h"
+
+#include <fcntl.h>
+#include <sys/stat.h>
+
+namespace __llvm_libc {
+
+LLVM_LIBC_FUNCTION(int, fstat, (int fd, struct stat *statbuf)) {
+  // int err = statx(fd, "", AT_EMPTY_PATH, statbuf);
+  // if (err != 0) {
+  //   libc_errno = err;
+  //   return -1;
+  // }
+  // return 0;
+
+  return -1;
+  // __WASM_PANIC();
+}
+
+} // namespace __llvm_libc

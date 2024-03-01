@@ -1491,7 +1491,7 @@ DLMALLOC_EXPORT int mspace_mallopt(int, int);
 #endif /* LACKS_FCNTL_H */
 #endif /* HAVE_MMAP */
 #ifndef LACKS_UNISTD_H
-#include "unistd.h"     /* for sbrk, sysconf */
+#include "c/sbrk/unistd.h"     /* for sbrk, sysconf */
 #else /* LACKS_UNISTD_H */
 #if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__NetBSD__)
 extern void*     sbrk(ptrdiff_t);

@@ -1,0 +1,27 @@
+load("//:wasm_cc.bzl", "wasm_cc_library")
+
+wasm_cc_library(
+    name = "wasm",
+    hdrs = [
+        "wasm.h",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
+wasm_cc_library(
+    name = "c",
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":wasm",
+        "//c/dlmalloc",
+        "//c/jsmath",
+        "//c/posix",
+        "//c/std:runtime",
+        "//c/std:stdio",
+        "//c/std:string",
+    ],
+)

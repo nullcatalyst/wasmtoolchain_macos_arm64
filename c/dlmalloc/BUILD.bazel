@@ -1,4 +1,6 @@
-cc_library(
+load("//:wasm_cc.bzl", "wasm_cc_library")
+
+wasm_cc_library(
     name = "dlmalloc",
     srcs = [
         "dlmalloc.c",
@@ -13,7 +15,7 @@ cc_library(
         "//visibility:public",
     ],
     deps = [
-        "//src:wasm",
-        "//c:sbrk",
+        "//c:wasm",
+        "//c/sbrk",
     ],
 )
