@@ -135,6 +135,7 @@ def _wasm_toolchain_config_impl(ctx):
                         flags = [
                             "--target=wasm32-unknown-unknown",
                             "-mmutable-globals",
+                            "-mbulk-memory",
                             "-msign-ext",
                             "-mnontrapping-fptoint",
                             "-msimd128",
