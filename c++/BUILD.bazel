@@ -1,4 +1,6 @@
-cc_library(
+load("//:wasm_rules.bzl", "wasm_cc_library")
+
+wasm_cc_library(
     name = "c++",
     srcs = [
         "abi.cpp",
@@ -22,7 +24,7 @@ cc_library(
         "terminate.cpp",
         "thread.cpp",
     ],
-    defines = [
+    local_defines = [
         "_LIBCPP_NO_EXCEPTIONS",
         "_LIBCPP_HAS_NO_EXCEPTIONS",
     ],
