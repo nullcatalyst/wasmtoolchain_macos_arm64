@@ -74,6 +74,7 @@ wasm_cc_library(
         ],
         exclude = [
             "stdio/fopencookie.cpp",
+            "stdio/printf_core/**",
             "stdio/scanf_core/**",
         ],
     ),
