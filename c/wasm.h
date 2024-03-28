@@ -25,8 +25,12 @@ void _console_error_impl(const char* msg_start, const char* msg_end);
 #endif  // defined(__cplusplus)
 
 #if !defined(WASM_PRINT_PANIC)
+#if !defined(NDEBUG)
 #define WASM_PRINT_PANIC 1
-#endif  // !WASM_PRINT_PANIC
+#else  // !defined(NDEBUG)
+#define WASM_PRINT_PANIC 0
+#endif  // defined(NDEBUG)
+#endif  // !defined(WASM_PRINT_PANIC)
 
 #if WASM_PRINT_PANIC
 
