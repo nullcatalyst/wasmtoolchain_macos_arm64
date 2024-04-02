@@ -71,6 +71,7 @@ wasm_cc_library(
             "stdio/**/*.h",
             "stdio/**/*.c",
             "stdio/**/*.cpp",
+            "sprintf/**/*.c",
         ],
         exclude = [
             "stdio/fopencookie.cpp",
