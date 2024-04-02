@@ -17,12 +17,12 @@ wasm_cc_library(
     ],
     deps = [
         ":wasm",
-        "//c/dlmalloc",
         "//c/jsmath",
         "//c/posix",
         "//c/std:runtime",
         "//c/std:stdio",
         "//c/std:stdlib",
         "//c/std:string",
+        "//c/std:time",
     ],
 )

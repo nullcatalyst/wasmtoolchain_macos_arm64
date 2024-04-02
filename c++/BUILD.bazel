@@ -19,6 +19,7 @@ wasm_cc_library(
         "memory.cpp",
         "mutex.cpp",
         "new.cpp",
+        "new_handler.cpp",
         "std_stream.h",
         "string.cpp",
         "terminate.cpp",

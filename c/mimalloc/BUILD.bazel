@@ -3,6 +3,7 @@ load("//:wasm_rules.bzl", "wasm_cc_library")
 wasm_cc_library(
     name = "mimalloc",
     srcs = [
+        "impl.c",
         "src/alloc.c",
         "src/alloc-aligned.c",
         "src/alloc-posix.c",
@@ -46,6 +47,6 @@ wasm_cc_library(
         "//visibility:public",
     ],
     deps = [
-        "//src:wasm",
+        "//c:wasm",
     ],
 )

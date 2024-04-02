@@ -3,18 +3,22 @@ load("//:wasm_rules.bzl", "wasm_cc_library")
 wasm_cc_library(
     name = "__support",
     srcs = glob([
-        "__support/**/*.h",
         "__support/**/*.c",
         "__support/**/*.cpp",
-        "errno/**/*.h",
+        "__support/**/*.h",
+        "assert/**/*.cpp",
+        "assert/**/*.h",
         "errno/**/*.c",
         "errno/**/*.cpp",
+        "errno/**/*.h",
         # TODO: These should really be in a separate library, but they don't seem to fit anywhere
         # very well.
-        "inttypes/**/*.h",
         "inttypes/**/*.c",
         "inttypes/**/*.cpp",
-    ]),
+        "inttypes/**/*.h",
+    ]) + [
+        "stdlib/abort.h",
+    ],
     hdrs = glob([
         "__support/**/*.h",
     ]),
@@ -95,6 +99,22 @@ wasm_cc_library(
         "__runtime/**/*.h",
         "__runtime/**/*.c",
         "__runtime/**/*.cpp",
+    ]),
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        ":__support",
+        "//c:wasm",
+    ],
+)
+
+wasm_cc_library(
+    name = "time",
+    srcs = glob([
+        "time/**/*.h",
+        "time/**/*.c",
+        "time/**/*.cpp",
     ]),
     visibility = [
         "//visibility:public",
